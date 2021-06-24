@@ -18,4 +18,6 @@ public interface UserService {
     public User login(User user);
 
     public int addUser(User user);
+
+    public int delUser(int id);
 }

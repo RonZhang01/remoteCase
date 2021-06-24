@@ -26,6 +26,16 @@
             text-align: center;
         }
     </style>
+    <script>
+
+        function delUser (id){
+            //用户完全测试
+            if (confirm("您确认删除吗？")) {
+                location.href = "${pageContext.request.contextPath}/delUserServlet?id="+id;
+            }
+        }
+
+    </script>
 </head>
 <body>
 <div class="container">
@@ -77,7 +87,10 @@
                 <td>${user.address}</td>
                 <td>${user.qq}</td>
                 <td>${user.email}</td>
-                <td><a class="btn btn-default btn-sm" href="update.html">修改</a>&nbsp;<a class="btn btn-default btn-sm" href="">删除</a></td>
+                <td>
+                    <a class="btn btn-default btn-sm" href="update.html">修改</a>&nbsp;
+                    <a class="btn btn-default btn-sm" href="javascript:delUser(${user.id});">删除</a>
+                </td>
             </tr>
         </c:forEach>
     </table>
