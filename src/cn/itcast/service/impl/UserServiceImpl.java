@@ -15,11 +15,22 @@ import java.util.List;
  */
 public class UserServiceImpl implements UserService {
 
+
     private UserDao userDao = new UserDaoImpl();
 
     @Override
     public List<User> findAll() {
         //调用dao 完成查询
         return userDao.findAll();
+    }
+
+    @Override
+    public User login(User user) {
+        return userDao.findUserByUsernameAndPassword(user.getUsername(),user.getPassword());
+    }
+
+    @Override
+    public int addUser(User user) {
+        return userDao.addUser(user);
     }
 }
