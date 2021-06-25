@@ -16,4 +16,7 @@ public interface UserDao {
     public int addUser(User user);
 
     public int del(int id);
+
+    public User findUserById(int id);
+
 }

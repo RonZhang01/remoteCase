@@ -20,4 +20,6 @@ public interface UserService {
     public int addUser(User user);
 
     public int delUser(int id);
+
+    public User findUserById(int id);
 }
