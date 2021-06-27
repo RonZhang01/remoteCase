@@ -1,5 +1,6 @@
 package cn.itcast.service;
 
+import cn.itcast.domain.PageBean;
 import cn.itcast.domain.User;
 
 import java.util.List;
@@ -22,4 +23,10 @@ public interface UserService {
     public int delUser(int id);
 
     public User findUserById(int id);
+
+    public int updateUser(User user);
+
+    public int delUsersById(String[] uids);
+
+    public PageBean<User> findUserByPage(String currentPageStr, String rowsStr);
 }

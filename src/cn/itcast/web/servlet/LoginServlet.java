@@ -29,7 +29,7 @@ public class LoginServlet extends HttpServlet {
         String checkcode_server = (String) request.getSession().getAttribute("CHECKCODE_SERVER");
         request.removeAttribute("CHECKCODE_SERVER");//确保验证码的一次性
         if (! checkcode_server.equalsIgnoreCase(verifycode)){
-            //验证码不争取
+            //验证码不正确
             //提示信息
             request.setAttribute("login_msg","验证码错误！");
             //跳转登录页面

@@ -10,15 +10,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/delUserServlet")
-public class DelUserServlet extends HttpServlet {
+@WebServlet("/delSelectedServlet")
+public class DelSelectedServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String id = request.getParameter("id");
+        //获取uid数组
+        String[] uids = request.getParameterValues("uid");
 
+        //调用service删除方法
         UserService userService = new UserServiceImpl();
-        userService.delUser(Integer.parseInt(id));
+        userService.delUsersById(uids);
 
-        //跳转到UserListServlet再次查询
+        //跳转到查询所有用户Servlet
         response.sendRedirect(request.getContextPath()+"/userListServlet");
     }
 

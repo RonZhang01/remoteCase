@@ -1,6 +1,7 @@
 package cn.itcast.web.servlet;
 
 import cn.itcast.domain.User;
+import cn.itcast.service.UserService;
 import cn.itcast.service.impl.UserServiceImpl;
 
 import javax.servlet.ServletException;
@@ -17,17 +18,17 @@ public class FindUserServlet extends HttpServlet {
         String id = request.getParameter("id");
 
         //2、根据id查询用户信息User
-        UserServiceImpl userService = new UserServiceImpl();
+        UserService userService = new UserServiceImpl();
         User user = userService.findUserById(Integer.parseInt(id));
 
         //3、将User对象存到request
         request.setAttribute("user",user);
 
         //4、转发到update.jsp页面
-        response.sendRedirect(request.getContextPath()+"/update.jsp");
+        request.getRequestDispatcher("/update.jsp").forward(request,response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doPost(request,response);
+        this.doPost(request,response);
     }
 }

@@ -14,16 +14,16 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 
-@WebServlet("/addUserServlet")
-public class AddUserServlet extends HttpServlet {
+@WebServlet("/updateUserServlet")
+public class UpdateUserServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //设置编码
+        //1、设置编码
         request.setCharacterEncoding("utf-8");
 
-        //获取所有数据
+        //获取表单数据map
         Map<String, String[]> parameterMap = request.getParameterMap();
 
-        //封装对象
+        //封装User对象
         User user = new User();
         try {
             BeanUtils.populate(user,parameterMap);
@@ -33,12 +33,11 @@ public class AddUserServlet extends HttpServlet {
             e.printStackTrace();
         }
 
-        //调用Service完成保存
+        //调用Service完成修改
         UserService userService = new UserServiceImpl();
-        int i = userService.addUser(user);
+        int i = userService.updateUser(user);
 
-
-        //跳转到UserListServlet再次查询
+        //跳转到查询所有用户Servlet
         response.sendRedirect(request.getContextPath()+"/userListServlet");
 
     }
