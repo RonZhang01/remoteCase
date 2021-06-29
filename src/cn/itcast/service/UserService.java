@@ -4,6 +4,7 @@ import cn.itcast.domain.PageBean;
 import cn.itcast.domain.User;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 用户管理的业务接口
@@ -28,5 +29,5 @@ public interface UserService {
 
     public int delUsersById(String[] uids);
 
-    public PageBean<User> findUserByPage(String currentPageStr, String rowsStr);
+    public PageBean<User> findUserByPage(String currentPageStr, String rowsStr, Map<String, String[]> condition);
 }

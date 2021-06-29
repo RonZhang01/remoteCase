@@ -7,6 +7,7 @@ import cn.itcast.domain.User;
 import cn.itcast.service.UserService;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @ClassName UserServiceImpl
@@ -62,7 +63,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public PageBean<User> findUserByPage(String currentPageStr, String rowsStr) {
+    public PageBean<User> findUserByPage(String currentPageStr, String rowsStr, Map<String, String[]> condition) {
 
         int currentPage = Integer.parseInt(currentPageStr);
         int rows = Integer.parseInt(rowsStr);
@@ -77,7 +78,7 @@ public class UserServiceImpl implements UserService {
 
 
         //调用dao查询totalCount总记录数属性
-        int totalCount = userDao.findTotalCount();
+        int totalCount = userDao.findTotalCount(condition);
         //计算总页码数
         int totalPage = totalCount % rows == 0 ? (totalCount / rows) : (totalCount / rows + 1);
 
@@ -88,7 +89,7 @@ public class UserServiceImpl implements UserService {
         int start = (currentPage-1)*rows;
 
         //调用dao查询list集合
-        List<User> userList = userDao.findByPage(start,rows);
+        List<User> userList = userDao.findByPage(start,rows,condition);
 
 
         //设置currentPage和rows属性
