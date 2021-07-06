@@ -31,12 +31,13 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User findUserByUsernameAndPassword(String username, String password) {
+    public List<User> findUserByUsernameAndPassword(String username, String password) {
 
         try {
             String sql = "select * from user where username = ? and password = ?";
-            User user = template.queryForObject(sql, new BeanPropertyRowMapper<User>(User.class), username, password);
-            return user;
+//            User user = template.queryForObject(sql, new BeanPropertyRowMapper<User>(User.class), username, password);
+            List<User> users = template.query(sql, new BeanPropertyRowMapper<User>(User.class), username, password);
+            return users;
         } catch (DataAccessException e) {
             e.printStackTrace();
             return null;

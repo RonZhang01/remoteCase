@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.List;
 import java.util.Map;
 
 @WebServlet("/loginServlet")
@@ -49,7 +50,7 @@ public class LoginServlet extends HttpServlet {
 
         //5、调用Service方法查询
         UserService userService = new UserServiceImpl();
-        User loginUser = userService.login(user);
+        List<User> loginUser = userService.login(user);
 
         //6、判断是否登录成功
         if (loginUser != null){

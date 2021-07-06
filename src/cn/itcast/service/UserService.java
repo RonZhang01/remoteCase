@@ -17,7 +17,7 @@ public interface UserService {
      */
     public List<User> findAll();
 
-    public User login(User user);
+    public List<User> login(User user);
 
     public int addUser(User user);
 

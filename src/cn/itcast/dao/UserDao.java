@@ -12,7 +12,7 @@ public interface UserDao {
 
     public List<User> findAll();
 
-    public User findUserByUsernameAndPassword(String username, String password);
+    public List<User> findUserByUsernameAndPassword(String username, String password);
 
     public int addUser(User user);
 
